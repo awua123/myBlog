@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>博客</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/content.css">
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/content.js"></script>
+</head>
+<body>
+
+	<!-- 顶部通栏 -->
+	<header class="nav-header">
+		<div class="aContainer">
+			<a href="<%=index%>">首页</a>
+			<span>
+			<%for (var i = 0;i<cLink.length;i++) { %>
+				<a href="<%=cLink[i].a%>"><%=cLink[i].b%></a>
+			<%}%>
+			</span>
+		</div>	
+	</header>
+
+	<div class="container">
+		<div class="blogContent">
+			<span class="blogMessage">
+			<h1><%=doc.articleTitle%></h1>
+			<a href="#"><%=doc.articleAuthor%></a>
+			<a href="#"><%=doc.categoryName%></a>
+			<span><%=doc.datetime%></span>
+			</span>
+			<p><%=doc.content%></p>
+		</div>
+		<div class="comment">
+			<textarea name="" id="" cols="80" rows="2"></textarea>
+			<input type="button" value="发表评论">
+		</div>
+			<ul class="blogComment">
+				<%for (var i = comment.length-1; i >= 0; i--) {%>
+				<li>
+					<span class="observer"><%=comment[i].commentName%>：</span>
+					<span class="comContent"><p><%=comment[i].commentContent%></p></span>
+					<span class="comTime"><p><%=comment[i].commentTime%></p></span>
+				</li>
+				<%}%>
+			</ul>
+	</div>
+	
+</body>
+</html>

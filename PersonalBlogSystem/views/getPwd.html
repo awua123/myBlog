@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>密码找回</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/getPwd.css">
+	<script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<!-- 顶部通栏 -->
+	<header class="nav-header">
+		<div class="aContainer">
+			<a href="/">首页</a>
+			<span>
+				<a href="/login">登录注册</a>
+			</span>
+		</div>	
+	</header>
+
+	<div class="sysName"><h1>个人博客</h1><br><h1>管理系统</h1></div>
+	<div class="container">
+	<div id="getPwd">
+		<form action="">
+			<span>用户名：</span><input type="text" name="userName"><br>
+			<span>保密问题：</span><select name="question" id="question">
+			<option>你的生日？</option>
+			<option>爸爸生日？</option>
+			<option>妈妈生日？</option>
+			</select><br>
+			<span class="pwdSecurity">问题答案：</span><input type="password" name="password"><br>
+			<p id=getPwd_tips></p>
+			<input class="sub" type="button" value="找回密码">
+		</form>
+		</div>
+	</div>
+
+	<script>
+		var tips = $("#getPwd_tips");
+		var btn = $("#getPwd .sub");
+			btn.click(function() {
+				var userName = $("#getPwd input[type = 'text']").val();
+				var question = $('#question').val();
+				var answer = $("#getPwd input[type = 'password']").val();
+				$.ajax({
+				type:"POST",
+				url:"/getPwd/getPassword",
+				data:{"userName":userName,'question':question,'answer':answer},
+				success:function(res) {
+					if(res.status == 0) {
+						tips.text(res.message);
+					} else {
+						alert(res.message);
+						$("#getPwd input[type = 'password']").val("");
+					}
+				},
+				error:function() {
+					console.log('error')
+				}
+				});
+		})
+			$("#getPwd input,select").focus(function() {
+				tips.text("");
+			})
+
+	</script>
+
+</body>
+</html>

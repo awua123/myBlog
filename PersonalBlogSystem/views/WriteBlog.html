@@ -1,0 +1,78 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>写博客</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/WriteBlog.css">
+	<script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<!-- 顶部通栏 -->
+	<header class="nav-header">
+		<div class="aContainer">
+			<a href="/home">首页</a>
+			<span>	
+				<%for (var i = 0;i<eLink.length;i++) { %>
+				<a href="<%=eLink[i].a%>"><%=eLink[i].b%></a>
+				<%}%>
+			</span>
+		</header>
+		</div>	
+	<!-- 中间容器 -->
+	<div class="container">
+		<!-- 版心 -->
+		<div class="banner">
+				<span><p>标题：</p><input type="text" name="blogTitle"></span>
+				<span><p>类别：</p>
+					<select name="categoryName" id="">
+						<%for (var i = 0;i<doc.length;i++) { %>
+						<option><%=doc[i].categoryName%></option>
+						<%}%>	
+					</select>
+				</span>
+				<span>博客内容：<br><textarea name="articleContent" id=""></textarea></span>
+				<button id="btn">发表</button>
+		</div>
+	</div>
+	<div class="tips"></div>		
+	<script>
+		var tips = $(".tips");
+		$('#btn').click(function() {
+			var blogTitle = $(".banner span input[name='blogTitle']").val();
+			var categoryName = $(".banner span select[name='categoryName']").val();
+			var articleContent =  $(".banner span textarea[name='articleContent']").val();
+			if(blogTitle == '' || articleContent == '') {
+				tips.text('标题或内容不能为空！');
+				tips.css("display","block");
+			} else{
+				$.ajax({
+				type:"POST",
+				url:"/WriteBlog/deliver",
+				data:{"blogTitle":blogTitle,"categoryName":categoryName,"articleContent":articleContent},
+				success:function(res) {
+					if(res.status == 0) {
+						tips.text(res.message);
+						tips.css("display","block");
+					} else {
+						tips.text(res.message);
+						tips.css("display","block");
+						setTimeout(function(){
+							tips.css("display","none");
+						},1000);	
+					}
+				},
+				error:function() {
+					console.log('error')
+				}
+				});
+			}
+		})
+		//提示隐藏
+		$(".banner input,textarea").focus(function() {
+			tips.css("display","none");
+		})
+	</script>
+	
+</body>
+</html>

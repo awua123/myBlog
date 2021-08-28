@@ -1,0 +1,111 @@
+body,html{
+	height: 100%;
+	box-sizing: border-box;
+}
+/*顶部通栏*/
+.nav-header{
+	width: 100%;
+	height: 40px;
+	background-color: #fff;
+	border-bottom: 1px solid #ddd;
+	line-height: 40px;
+	font-size: 18px;
+	position: fixed;
+	top:0;
+	z-index: 100;
+}
+.aContainer{
+	margin: 0 120px;
+	background-color: #fff;
+}
+.aContainer a{	
+	margin-left: 10px;
+}
+.aContainer a:hover{	
+	color: red;
+}
+.aContainer span{
+	position: absolute;
+	right: 140px;
+	padding: 0;
+}
+
+/*中间容器*/
+.container{
+	height: 100%;
+	margin: 50px 50px;
+}
+
+/*左侧导航栏*/
+.nav-left-side{
+	width: 100px;
+	padding-top: 10px;
+	position: fixed;
+	background-color:#fff;
+}
+.nav-left-side div ul{
+	text-align: center;	
+	margin-bottom: 100px;
+}
+.nav-left-side div ul li a{
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	margin-bottom: 1px;
+}
+.btn:first-child a{
+	background-color: #f44444;
+	color: #fff;
+}
+.nav-left-side div ul li a:hover{
+	background-color: #f44444;
+	color: #fff;
+}
+
+/*右侧部分*/
+.right-side{
+	width: 300px;
+	background-color: #fff;
+	position: fixed;
+	right: 50px;
+}
+.right-side div{}
+.right-side div h3{
+	text-align: center;
+	line-height: 355px;
+}
+
+
+/*版心*/
+.banner{
+	margin-left:110px;
+	margin-right: 310px;
+	background-color:#fff;
+}
+.banner ul{
+	padding-top: 10px;
+}
+.banner ul li{
+	height: 150px;
+	border-bottom: 1px solid #ccc;
+}
+.banner ul li a{
+	display: inline-block;
+}
+.banner ul li a,p,span{
+	padding: 10px 10px;
+}
+.banner ul li a h2:hover{
+	color: #f44444;
+}
+.banner ul li a:nth-child(3):hover{
+	color: #157dcf;
+}
+.banner ul li a:nth-child(4):hover{
+	color: #157dcf;
+}
+.ellipsis{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}

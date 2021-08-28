@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/index.css">
+	<script type="text/javascript" src="js/index.js"></script>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<link rel="shortcut icon" href="img/Blogger.ico" /> 
+</head>
+<body>
+	
+	<!-- 顶部通栏 -->
+	<header class="nav-header">
+		<div class="aContainer">
+			<a href="/home">首页</a>
+			<span>
+			<%for (var i = 0;i<bLink.length;i++) { %>
+				<a href="<%=bLink[i].a%>"><%=bLink[i].b%></a>
+			<%}%>
+			</span>
+		</div>	
+	</header>
+
+	<!-- 中间容器 -->
+	<div class="container">
+
+	<!-- 博客类别 左侧边导航栏-->
+		<nav class="nav-left-side clearfix">
+			<div>
+				<ul>
+					<%for (var i = 0;i<category.length;i++) { %>  <!-- 触发AJAX请求 -->
+						<li class="btn" onclick="btnAction(<%=i%>)"><a href="#"><%=category[i].categoryName%></a></li>
+					<%}%>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- 右侧部分 -->
+		<div class="right-side">
+			<div>
+				<h3>敬请期待......</h3>
+			</div>	
+		</div>
+
+		<!-- 版心 -->
+		<div class="banner">
+				<ul class="article">
+
+					<%for (var i = 0;i<article.length;i++) { %> 
+						<li>
+							<a href="/content?articleId=<%=article[i].articleId%>"><h2><%=article[i].articleTitle%></h2></a>	
+							<p class="ellipsis"><%=article[i].content%></p>
+							<a href="#"><%=article[i].categoryName%></a>
+							<a href="#"><%=article[i].articleAuthor%></a>
+							<span><%=article[i].datetime%></span>
+						</li>
+					<%}%>
+	
+				</ul>
+		</div>
+
+	</div>
+
+	<script>
+		
+		function btnAction(i) {
+			var num = i + 1;
+			var aList = $(".btn a");
+			var btn = $(".btn:nth-child("+num+")");
+			for (var a = 0; a < aList.length; a++ ){
+				aList.css({
+		  			"color":"#000",
+		  			"background-color":"#fff"
+  				});
+			}
+				$(".btn:nth-child("+num+") a").css({
+					"background-color":"#f44444",
+					"color":"#fff"
+				})
+			var article = $(".article");
+			var btnText = btn.text();
+			var str = "";
+			$.ajax({
+				type:"GET",
+				url:"/index",
+				data:{"categoryName":btnText},
+				dataType:"json",
+				success:function(data, dataStatus) {
+					if(data.length == 0) {
+						article.html("<li><h2 style='text-align:center'><a href='/'>还没有呢，去看看其他文章吧！</a></h2></li>");
+					} else {
+						for(var j = 0;j < data.length;j++) {
+							str += "<li><a href='/content?articleId="+data[j].articleId+"'><h2>"+data[j].articleTitle+"</h2></a><p class='ellipsis'>"+data[j].content+"</p>"+"<a href='#'>"+data[j].categoryName+"</a>"+"&nbsp<a href='#'>"+data[j].articleAuthor+"</a>"+"&nbsp;<span>"+data[j].datetime+"</span></li>";	
+						}
+						article.html(str);	
+					}
+				},
+				error:function() {
+					console.log("error!")
+				}
+			})
+		}
+
+	</script>
+
+</body>
+</html>

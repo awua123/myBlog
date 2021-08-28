@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>密码找回</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/getPwd.css">
+	<script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	
+	<div class="sysName"><h1>个人博客</h1><br><h1>管理系统</h1></div>
+	<div class="container">
+	<div id="getPwd">
+		<form action="">
+			<span>用户名：</span><input type="text" name="userName"><br>
+			<span>保密问题：</span><select name="question" id="question">
+			<option value="opt1">你的生日？</option>
+			<option value="opt2">爸爸生日？</option>
+			<option value="opt3">妈妈生日？</option>
+			</select><br>
+			<span class="pwdSecurity">问题答案：</span><input type="password" name="password"><br>
+			<p id=getPwd_tips>请输入用户名和答案！</p>
+			<input class="sub" type="button" value="找回密码">
+		</form>
+		</div>
+	</div>
+
+	<script>
+		
+		var userName = $("#getPwd input[type = 'text']");
+		var answer = $("#getPwd input[type = 'password']");
+		var tips = $("#getPwd_tips")
+		var btn = $("#getPwd .sub");
+			btn.click(function() {
+				if(userName.val() == "" || answer.val() == "") { //空值验证
+				tips.css("visibility","visible");
+			}
+		})
+			$("#getPwd input,select").focus(function() {
+				tips.css("visibility","hidden");
+			})
+
+	</script>
+
+</body>
+</html>

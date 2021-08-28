@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录注册</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/login_register.css">
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/login_register.js"></script>
+	<link rel="shortcut icon" href="./img/login_favicon.ico" /> 
+</head>
+
+<body>
+	<!-- 顶部通栏 -->
+	<header class="nav-header">
+		<div class="aContainer">
+			<a href="/">首页</a>
+		</div>	
+	</header>
+	<div class="sysName"><h1>个人博客</h1><br><h1>管理系统</h1></div>
+	<div class="container">
+		<!-- 登录 -->
+		<div id="login">
+		<button class="btn" id="reg_btn">注册</button>
+		<form action="">
+			<span>用户名：</span><input id="userName" type="text" name="userName"><br>
+			<span class="pwd">密码：</span><input type="password" name="password">
+			<p id=log_tips>请输入账号密码！</p>
+			<input class="sub" id="loginCheck" type="button" value="登录">
+		</form>
+		<a href="/getPwd">忘记密码？</a>
+		</div>
+		
+		<!-- 注册 -->
+		<div id="register">
+		<button class="btn" id="login_btn">登录</button>
+		<form action="">
+			<span>用户名：</span><input type="text" name="registerName" placeholder="6~12位英文数字(必填)"><br>
+			<span class="pwd">密码：</span><input type="password" name="password" placeholder="6~12位英文数字符号(必填)"><br>
+			<span class="confirmpwd">确认密码：</span><input type="password" name="confirmPwd" placeholder="(必填)"><br>
+			<span>保密问题：</span><select name="question" id="question">
+			<option>你的生日？</option>
+			<option>爸爸生日？</option>
+			<option>妈妈生日？</option>
+			</select><br>
+			<span class="pwdSecurity">问题答案：</span><input type="password" name="answer" placeholder="用于找回密码 (必填)">
+			<input class="sub" id="registerCheck" type="button" value="注册">
+		</form>
+		</div>
+	</div>
+	
+	<script>
+		var reg_btn = document.getElementById("reg_btn");
+		var login_btn = document.getElementById("login_btn");
+		var login = document.getElementById("login");
+		var resgister = document.getElementById("resgister");
+		// 登录切换注册
+		reg_btn.onclick = function() {
+				login.style.display = "none";
+				register.style.display = "block";
+		}
+		//注册切换登录
+		login_btn.onclick = function() {
+				login.style.display = "block";
+				register.style.display = "none";
+		}
+	</script>
+	
+</body>
+</html>

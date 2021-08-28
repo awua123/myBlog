@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录注册</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/login_resgister.css">
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/login_resgister.js"></script>
+	<link rel="shortcut icon" href="./img/login_favicon.ico" /> 
+</head>
+
+<body>
+	
+	<div class="sysName"><h1>个人博客</h1><br><h1>管理系统</h1></div>
+	<div class="container">
+		<!-- 登录 -->
+		<div id="login">
+		<button class="btn" id="resg_btn">注册</button>
+		<form action="">
+			<span>用户名：</span><input type="text" name="userName"><br>
+			<span class="pwd">密码：</span><input type="password" name="password">
+			<p id=log_tips>请输入账号密码！</p>
+			<input class="sub" id="loginCheck" type="button" value="登录">
+		</form>
+		<a href="getPwd.html" target="_blank">忘记密码？</a>
+		</div>
+		
+		<!-- 注册 -->
+		<div id="resgister">
+		<button class="btn" id="login_btn">登录</button>
+		<form action="">
+			<span>用户名：</span><input type="text" name="userName"><br>
+			<span class="pwd">密码：</span><input type="password" name="password"><br>
+			<span class="confirmpwd">确认密码：</span><input type="password" name="confirmPwd"><br>
+			<span>保密问题：</span><select name="question" id="question">
+			<option value="opt1">你的生日？</option>
+			<option value="opt2">爸爸生日？</option>
+			<option value="opt3">妈妈生日？</option>
+			</select><br>
+			<span class="pwdSecurity">问题答案：</span><input type="password" name="getPwd" placeholder="用于找回密码">
+			<input class="sub" type="button" value="注册">
+		</form>
+		</div>
+	</div>
+	
+	<script>
+		var resg_btn = document.getElementById("resg_btn");
+		var login_btn = document.getElementById("login_btn");
+		var login = document.getElementById("login");
+		var resgister = document.getElementById("resgister");
+		// 登录切换注册
+		resg_btn.onclick = function() {
+				login.style.display = "none";
+				resgister.style.display = "block";
+		}
+		//注册切换登录
+		login_btn.onclick = function() {
+				login.style.display = "block";
+				resgister.style.display = "none";
+		}
+	</script>
+	
+</body>
+</html>

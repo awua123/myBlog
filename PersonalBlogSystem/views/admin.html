@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个人博客系统后台</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/admin.css">
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/template.js"></script>
+	<script src="js/admin.js"></script>
+	<link rel="shortcut icon" href="img/login_favicon.ico" /> 
+</head>
+<body>
+	
+	<!-- 顶部通栏 -->
+	<header class="nav-header">
+		<div class="aContainer">
+			<a href="/home">客户界面</a>
+			<span>
+				欢迎管理员：<a href="#"><em><%=administrator%></em></a>
+			
+				<a href="/admin_logout">退出</a>
+			</span>
+		</div>	
+	</header>
+
+	<!-- 中间容器 -->
+	<div class="container">
+		<!-- 左侧部分 -->
+		<nav class="nav-left-side clearfix">
+			<div>
+				<ul>
+						<li class="btn" onclick="change(1)"><a href="#">博客管理</a></li>
+						<li class="btn" onclick="change(2)"><a href="#">用户管理</a></li>
+						<li class="btn" onclick="change(3)"><a href="#">评论管理</a></li>
+						<li class="btn" onclick="change(4)"><a href="#">类别管理</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- 右侧部分 -->
+		<div class="right-side">
+			<div>
+				<h3>敬请期待......</h3>
+			</div>	
+		</div>
+
+		<!-- 版心 -->
+		<div class="banner">
+			<ul class="content">
+				<%for(var i = 0; i < doc.length; i++) {%>
+				<li>
+					<input type="checkbox" value="<%=doc[i].articleId%>">
+					<span class="articleId">文章ID：<%=doc[i].articleId%></span>
+					<span>类别：<a href="#" class="category"><%=doc[i].categoryName%></a></span>
+					<span>作者：<a href="#" style="color: red;"><%=doc[i].articleAuthor%></a></span><br>
+					<span>标题：<a href="/content?articleId=<%=doc[i].articleId%>" style="color: red;><p class="wordBreak"><%=doc[i].articleTitle%></p></a></span>	
+				</li>
+				<%}%>	
+			</ul>
+			<span>
+				<button  onclick="operation('del')">删除</button>
+				<button  onclick="operation('add')">增加</button>
+				<button  onclick="operation('update')">修改</button>
+			</span>
+		</div>	
+	</div>
+	<script type="text/html" id="blogManage">
+		{{each result article}}
+			<li>
+				<input type="checkbox" value="{{article.articleId}}">
+				<span class="articleId">文章ID：{{article.articleId}}</span>
+				<span>类别：<a href="#" class="category">{{article.categoryName}}</a></span>
+				<span>作者：<a href="#" style="color: red;">{{article.articleAuthor}}</a></span><br>
+				<span>标题：<a href="/content?articleId={{article.articleId}}" style="color: red;><p class="wordBreak">{{article.articleTitle}}</p></a></span>	
+			</li>
+		{{/each}}
+	</script>
+	<script type="text/html" id="userManage">
+		{{each result user}}
+			<li>
+				<input type="checkbox" value="{{user.userId}}">
+				<span>用户名：<a href="#" class="user" style="color: red;">{{user.userName}}</a></span>	
+				<a href="#" class="userType">用户类型：{{user.userType}}</a>
+				<span>注册时间：{{user.registerTime}}</span>
+			</li>
+		{{/each}}
+	</script>
+	<script type="text/html" id="commentManage">
+		{{each result comment}}
+			<li>
+				<input type="checkbox" value="{{comment.commentId}}">
+				<span>评论人：<a href="#" style="color: red;">{{comment.commentName}}</a></span>	
+				<a href="#">文章ID：{{comment.articleId}}</a>
+				<span>评论时间：{{comment.commentTime}}</span><br>
+				<span class="commentContent">评论内容：<p class="wordBreak" style="color: red;">{{comment.commentContent}}</p></span>
+			</li>
+		{{/each}}
+	</script>
+	<script type="text/html" id="categoryManage">
+		{{each result category}}
+			<li>
+				<input type="checkbox" value="{{category.categoryId}}">
+				<span>类别名称：<a href="/content?articleId=2">{{category.categoryName}}</a></span>	
+			</li>
+		{{/each}}
+	</script>
+</body>
+</html>
