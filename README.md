@@ -1,7 +1,7 @@
 <h1 align="center">nodeblog</h1>
 
 ### 简介
-* 使用node+express+mongo实现的个人博客系统，项目使用express处理http请求和路由管理，使用mongo作为数据库，swig作为模板引擎，body-parser处理post数据，使用cookies记录用户登录状态，项目中涉及了创建一个前端博客+后台管理系统的大部分知识。
+* 使用node+express+mongo实现的个人博客系统，界面比较简洁。项目使用express处理http请求和路由管理，使用mongo作为数据库，swig作为模板引擎，body-parser处理post数据，使用cookies记录用户登录状态，项目中涉及了创建一个前端博客+后台管理系统的大部分知识。
 ### 实现的主要功能
 1. 登录注册页面
 2. 首页分类
